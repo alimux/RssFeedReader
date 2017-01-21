@@ -113,8 +113,7 @@ public class FeedSelectorActivity extends AppCompatActivity {
                 rssFL.setId(cursor.getInt(cursor.getColumnIndex(_ID)));
                 rssFL.setTitleFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
                 rssFL.setDescriptionFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
-                Log.i("AD", "link : "+cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
-                //rssFL.setUrlFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_LINK)));
+                rssFL.setUrlFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_LINK)));
                 rssFL.setDateFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DATE)));
 
                 rssFeedList.add(rssFL);

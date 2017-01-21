@@ -57,7 +57,7 @@ public class RssEntity {
 
     public Cursor getAllFeeds(){
         //prepare query
-        String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_DATE };
+        String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
         String order = COLUMN_NAME_DATE + " DESC";
         db = dbOpener.getWritableDatabase();
 
