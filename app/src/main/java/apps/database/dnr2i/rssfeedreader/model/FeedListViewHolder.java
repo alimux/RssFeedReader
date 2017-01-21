@@ -35,7 +35,11 @@ public class FeedListViewHolder extends RecyclerView.ViewHolder {
         modifyButton = (ImageButton) itemView.findViewById(R.id.modifyButton);
         deleteButton = (ImageButton) itemView.findViewById(R.id.deleteButton);
 
+
+
     }
+
+
 
     public TextView getTitleFeed() {
         return titleFeed;

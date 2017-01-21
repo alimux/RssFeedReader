@@ -67,13 +67,13 @@ public class RssEntity {
 
 
     }
-    public void deleteFeed(int i){
-        String where = " _ID = " + i;
-        String whereArgs[] =  { Integer.toString(i) };
-
+    public boolean deleteFeed(int i){
+        String where = " _ID = " + i + " ";
+        //String whereArgs[] =  { Integer.toString(i) };
+        //Log.i("AD", "whereArgs : "+whereArgs[0]);
         db = dbOpener.getWritableDatabase();
         //delete reccord
-        db.delete(TABLE_NAME, where, whereArgs);
+        return db.delete(TABLE_NAME, where, null) > 0;
     }
 
 

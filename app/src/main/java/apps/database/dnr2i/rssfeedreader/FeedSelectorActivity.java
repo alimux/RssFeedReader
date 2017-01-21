@@ -46,7 +46,7 @@ public class FeedSelectorActivity extends AppCompatActivity {
         arrayRssFeedList = RssFeedsList();
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList));
+        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList, FeedSelectorActivity.this));
         //displayRssFeeds();
     }
 
@@ -60,7 +60,7 @@ public class FeedSelectorActivity extends AppCompatActivity {
         arrayRssFeedList = RssFeedsList();
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList));
+        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList, FeedSelectorActivity.this));
 
     }
 
@@ -125,8 +125,8 @@ public class FeedSelectorActivity extends AppCompatActivity {
 
         return rssFeedList;
     }
-    public void delete(View view){
-
-
+    public void refreshView(){
+        onResume();
     }
+
 }
