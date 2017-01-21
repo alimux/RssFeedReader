@@ -16,9 +16,11 @@ public class Contract {
     /* Inner class that defines the table contents */
     public static class Entry implements BaseColumns {
         public static final String TABLE_NAME = "rssfeeds";
+        public static final String ITEM_TABLE_NAME = "item";
         public static final String COLUMN_NAME_TITLE = "titleFeed";
         public static final String COLUMN_NAME_DESCRIPTION = "descriptionFeed";
         public static final String COLUMN_NAME_LINK = "urlFeed";
         public static final String COLUMN_NAME_DATE = "dateFeed";
+        public static final String COLUMN_FEED_ID = "feedId";
     }
 }

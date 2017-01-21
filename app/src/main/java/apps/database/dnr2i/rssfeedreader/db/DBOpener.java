@@ -21,7 +21,13 @@ public class DBOpener extends SQLiteOpenHelper {
             COLUMN_NAME_TITLE + " TEXT NOT NULL , " +
             COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL , " +
             COLUMN_NAME_LINK + " TEXT NOT NULL , " +
-            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ")";
+            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");" +
+            "CREATE TABLE " + ITEM_TABLE_NAME + "( " +
+            _ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"  +
+            COLUMN_NAME_TITLE + " TEXT NOT NULL , " +
+            COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL , " +
+            COLUMN_NAME_LINK + " TEXT NOT NULL , " +
+            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");";
 
     //dropping base
     private static final String SQL_DELETE_ENTRIES = " DROP TABLE  IF EXISTS " + TABLE_NAME;
