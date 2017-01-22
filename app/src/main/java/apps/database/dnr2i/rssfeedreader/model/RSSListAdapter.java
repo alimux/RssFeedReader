@@ -86,6 +86,7 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
 
             }
         });
+        //modify button
         holder.getModifyButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +102,7 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
     @Override
     public  int getItemCount(){
         int recordNumber =  rssFL.size();
-        Log.i("AD", "Nombre d'enregistrement en base : "+recordNumber);
+        //Log.i("AD", "Nombre d'enregistrement en base : "+recordNumber);
         return recordNumber;
     }
 

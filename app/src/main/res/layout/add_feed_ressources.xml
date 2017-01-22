@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -74,7 +75,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/feedUrl"
-        android:inputType="textUri" />
+        android:inputType="textUri"
+        tools:text="@string/editTxtUrl" />
 
     <android.support.v4.widget.Space
         android:layout_width="1dp"
@@ -85,7 +87,7 @@
         android:text="@string/btnRssAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addFeedRSS"
+        android:id="@+id/addFeedRSSBtn"
         android:textStyle="bold"
         android:onClick="addRssFeed" />
 

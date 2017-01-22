@@ -12,5 +12,5 @@ public class ModifyFeedRssActivity extends AppCompatActivity {
         setContentView(R.layout.modify_feed_selector);
     }
 
-    
+
 }

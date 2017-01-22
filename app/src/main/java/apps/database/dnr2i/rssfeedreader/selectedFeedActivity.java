@@ -48,7 +48,7 @@ public class SelectedFeedActivity extends AppCompatActivity {
         feedItems = new ItemEntity(SelectedFeedActivity.this);
 
         //TODO recupérer l'id du feed sur lequel on a cliqué
-        arrayFeedItems = feedItemList();
+        //arrayFeedItems = feedItemList();
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RSSAdapter(arrayFeedItems));

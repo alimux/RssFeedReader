@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RSS Feed Reader</string>
     /*-----------------------------------------------
-    | add_fee_ressources.xml |
+    | add_feed_ressources.xml |
     -----------------------------------------------*/
     <string name="addFeed">Ajouter Flux...</string>
     <string name="lblTitle">Ajouter un flux RSS :</string>
@@ -9,9 +9,14 @@
     <string name="lblRssDescription">Description courte du flux :</string>
     <string name="lblRssurl">Lien du flux : </string>
     <string name="btnRssAdd">Ajouter le flux...</string>
+    <string name="editTxtUrl">http://</string>
 
     /*-----------------------------------------------
-    | activity_feed_selectorl |
+    | activity_feed_selectorl.xml |
     -----------------------------------------------*/
     <string name="lblTitleSelector">Liste des flux :</string>
+    /*-----------------------------------------------
+     | modify_feed_selector.xml
+    ------------------------------------------------*/
+    <string name="lblTitleModify">Modifier le flux RSS : </string>
 </resources>
