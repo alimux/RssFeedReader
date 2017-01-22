@@ -10,8 +10,9 @@
 
         <TextView
             android:text="une superbe description d'un fabuleux site de news"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:layout_below="@+id/titleFeed"
             android:layout_alignLeft="@+id/titleFeed"
             android:layout_alignStart="@+id/titleFeed"
@@ -23,7 +24,7 @@
 
         <TextView
             android:text="Super site"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
             android:layout_marginStart="30dp"
@@ -49,9 +50,10 @@
 
         <TextView
             android:text="http://www.mon-url.com"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:id="@+id/urlFeed"
+            android:ellipsize="end"
             android:layout_marginTop="16dp"
             android:layout_below="@+id/descriptFeed"
             android:layout_alignLeft="@+id/descriptFeed"

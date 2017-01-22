@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/modifyFeedRSS"
         android:textStyle="bold"
-        android:onClick="addRssFeed" />
+        android:onClick="modifyRssFeed" />
 
 
 </LinearLayout>

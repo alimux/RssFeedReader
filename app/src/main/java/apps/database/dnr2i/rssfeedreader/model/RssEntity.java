@@ -58,6 +58,16 @@ public class RssEntity {
 
     }
 
+    public Cursor getFeedById(int id){
+
+        //prepare query
+        String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
+        String whereClause = " _ID = " + id + " ";
+        db = dbOpener.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, columns, whereClause, null, null, null, null, null);
+        return cursor;
+    }
+
     public Cursor getAllFeeds(){
         //prepare query
         String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
@@ -70,6 +80,25 @@ public class RssEntity {
 
 
     }
+
+    public int modifyFeed(int id, String title, String description, String url ){
+        ContentValues values = new ContentValues();
+        dateNow = System.currentTimeMillis();
+        timestamp = new java.sql.Timestamp(dateNow);
+
+        values.put(COLUMN_NAME_TITLE, title);
+        values.put(COLUMN_NAME_DESCRIPTION,description);
+        values.put(COLUMN_NAME_LINK, url);
+        values.put(COLUMN_NAME_DATE, timestamp.toString());
+
+        String whereClause = " _ID = " + id + " ";
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+
+        return db.update(TABLE_NAME, values, whereClause, null);
+
+    }
+
+
     public boolean deleteFeed(int i){
         String where = " _ID = " + i + " ";
         //String whereArgs[] =  { Integer.toString(i) };

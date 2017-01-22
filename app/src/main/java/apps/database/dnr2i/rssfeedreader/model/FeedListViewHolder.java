@@ -4,15 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import apps.database.dnr2i.rssfeedreader.R;
-
-import static android.provider.BaseColumns._ID;
-import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_DATE;
-import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_DESCRIPTION;
-import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_TITLE;
 
 /**
  * Alexandre DUCREUX on 21/01/2017.

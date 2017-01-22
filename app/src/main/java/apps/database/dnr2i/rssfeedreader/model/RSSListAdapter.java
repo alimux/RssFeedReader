@@ -106,6 +106,8 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ModifyFeedRssActivity.class);
+                int id = rssFeedList.getId();
+                intent.putExtra("id",id);
                 context.startActivity(intent);
             }
         });
