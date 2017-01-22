@@ -48,9 +48,6 @@ public class addFeedRssActivity extends AppCompatActivity {
      */
     public void addRssFeed(View view){
 
-
-
-
         feedName = inputFeedName.getText().toString();
         feedDescription = inputFeedDescription.getText().toString();
         feedUrl = inputFeedUrl.getText().toString();

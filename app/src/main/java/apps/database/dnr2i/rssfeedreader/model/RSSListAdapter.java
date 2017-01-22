@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import apps.database.dnr2i.rssfeedreader.FeedSelectorActivity;
 import apps.database.dnr2i.rssfeedreader.ModifyFeedRssActivity;
 import apps.database.dnr2i.rssfeedreader.R;
+import apps.database.dnr2i.rssfeedreader.SelectedFeedActivity;
 
 
 /**
@@ -62,6 +63,18 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
         holder.getDescriptionFeed().setText(rssFeedList.getDescriptionFeed());
         holder.getUrlFeed().setText(rssFeedList.getUrlFeed());
 
+        //display feed
+
+            holder.getUrlFeed().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SelectedFeedActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+
+
+        //delete item
         holder.getDeleteButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +99,7 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
 
             }
         });
-        //modify button
+        //modify item
         holder.getModifyButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
