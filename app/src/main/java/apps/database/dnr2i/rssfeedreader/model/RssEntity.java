@@ -22,6 +22,9 @@ public class RssEntity {
     private java.sql.Timestamp timestamp;
     private long dateNow;
 
+
+
+
     public RssEntity(Context context){
         //instanciate DBOpener
         dbOpener = new DBOpener(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -75,6 +78,5 @@ public class RssEntity {
         //delete reccord
         return db.delete(TABLE_NAME, where, null) > 0;
     }
-
 
 }

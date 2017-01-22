@@ -34,12 +34,12 @@ public class FeedListViewHolder extends RecyclerView.ViewHolder {
         urlFeed = (TextView) itemView.findViewById(R.id.urlFeed);
         modifyButton = (ImageButton) itemView.findViewById(R.id.modifyButton);
         deleteButton = (ImageButton) itemView.findViewById(R.id.deleteButton);
-
-
-
     }
 
-
+    public void displaySelectorButton(){
+        deleteButton.setVisibility(View.GONE);
+        modifyButton.setVisibility(View.GONE);
+    }
 
     public TextView getTitleFeed() {
         return titleFeed;

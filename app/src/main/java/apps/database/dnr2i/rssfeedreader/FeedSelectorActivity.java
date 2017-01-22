@@ -10,14 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
-//import apps.database.dnr2i.rssfeedreader.model.RSSAdapter;
 import apps.database.dnr2i.rssfeedreader.model.RSSFeedList;
 import apps.database.dnr2i.rssfeedreader.model.RSSListAdapter;
 import apps.database.dnr2i.rssfeedreader.model.RssEntity;
@@ -32,7 +26,7 @@ import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_TI
 public class FeedSelectorActivity extends AppCompatActivity {
 
     private RssEntity rssEntity;
-    private  ArrayList<RSSFeedList> arrayRssFeedList;
+    private static final String DEFAULT_ENTRIES = "Vous n'êtes abonné à aucun flux...";
 
 
     @Override
@@ -40,28 +34,15 @@ public class FeedSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_selector);
         setTitle("Liste de vos flux favoris ...");
-
-        rssEntity = new RssEntity(FeedSelectorActivity.this);
-
-        arrayRssFeedList = RssFeedsList();
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList, FeedSelectorActivity.this));
-        //displayRssFeeds();
+        initRecyclerView();
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
         Log.i("AD", "reprise de l'activité");
-        rssEntity = new RssEntity(FeedSelectorActivity.this);
-
-        arrayRssFeedList = RssFeedsList();
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RSSListAdapter(arrayRssFeedList, FeedSelectorActivity.this));
-
+        //RSSListAdapter.notifyDataSetChanged();
+        initRecyclerView();
     }
 
     /**
@@ -94,7 +75,6 @@ public class FeedSelectorActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 Toast toast = Toast.makeText(context, selectedMenu, Toast.LENGTH_SHORT);
                 toast.show();
-                //finish();
                 break;
             default: return super.onOptionsItemSelected(item);
         }
@@ -104,12 +84,21 @@ public class FeedSelectorActivity extends AppCompatActivity {
 
     public ArrayList<RSSFeedList> RssFeedsList(){
         Cursor cursor = rssEntity.getAllFeeds();
-        Log.i("AD", "Connexion à la base ok");
         ArrayList<RSSFeedList> rssFeedList = new ArrayList<>();
+        Log.i("AD", "curseur = "+cursor.getCount()+ " taille tableau : "+rssFeedList.size());
+
         String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
-        if(cursor !=null && cursor.moveToFirst()){
+
+        if(cursor.getCount()>0 && cursor.moveToFirst()){
+            Log.i("AD", "curseur non null, remplissage liste");
+            if(rssFeedList.size()>0 && rssFeedList.get(0).getId()==-1){
+                Log.i("AD", "enregistrement par défaut à supprimer : "+rssFeedList.get(0).getId());
+                rssFeedList.remove(0);
+            }
+
             do {
                 RSSFeedList rssFL = new RSSFeedList();
+                //adding entries on list
                 rssFL.setId(cursor.getInt(cursor.getColumnIndex(_ID)));
                 rssFL.setTitleFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
                 rssFL.setDescriptionFeed(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
@@ -121,12 +110,28 @@ public class FeedSelectorActivity extends AppCompatActivity {
             }
             while (cursor.moveToNext());
         }
+       else if(cursor.getCount()==0 && rssFeedList.size()==0){
+            Log.i("AD", "pas d'entrée en base, on ajoute une entrée défaut..");;
+            RSSFeedList rssFL = new RSSFeedList();
+            rssFL.setId(-1);
+            rssFL.setDescriptionFeed(DEFAULT_ENTRIES);
+            rssFeedList.add(rssFL);
+        }
         cursor.close();
+        Log.i("aD", "taille rssFeedlist : "+rssFeedList.size()+" Taille du curseur :"+cursor.getCount());
 
         return rssFeedList;
     }
-    public void refreshView(){
-        onResume();
+
+    public void initRecyclerView(){
+        rssEntity = new RssEntity(FeedSelectorActivity.this);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new RSSListAdapter(RssFeedsList(), FeedSelectorActivity.this));
+
+
     }
+
+
 
 }

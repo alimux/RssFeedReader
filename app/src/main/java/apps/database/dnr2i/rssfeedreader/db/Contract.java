@@ -20,5 +20,6 @@ public class Contract {
         public static final String COLUMN_NAME_DESCRIPTION = "descriptionFeed";
         public static final String COLUMN_NAME_LINK = "urlFeed";
         public static final String COLUMN_NAME_DATE = "dateFeed";
+
     }
 }

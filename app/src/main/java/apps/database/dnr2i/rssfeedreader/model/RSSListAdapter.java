@@ -24,6 +24,7 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
     private ArrayList<RSSFeedList> rssFL = new ArrayList<>();
     private Context context;
     private RssEntity rssEntity;
+    private FeedListViewHolder holder;
 
 
 
@@ -31,13 +32,23 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
         this.rssFL = rssFL;
         this.context = context;
 
+
+
+    }
+    public void displayButton(FeedListViewHolder holder){
+        if(rssFL.size()==1 && rssFL.get(0).getId()==-1){
+            holder.displaySelectorButton();
+        }
+
     }
 
     @Override
     public FeedListViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.rss_feed_details_selector, parent, false);
-        return new FeedListViewHolder(view);
+        this.holder = new FeedListViewHolder(view);
+        displayButton(holder);
+        return holder;
     }
 
     @Override
@@ -74,17 +85,15 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
         });
 
     }
-    public void display(){
-
-
-    }
 
     @Override
     public  int getItemCount(){
         int recordNumber =  rssFL.size();
-        //Log.i("AD", "Nombre d'enregistrement en base : "+recordNumber);
+        Log.i("AD", "Nombre d'enregistrement en base : "+recordNumber);
         return recordNumber;
     }
+
+
 }
 
 
