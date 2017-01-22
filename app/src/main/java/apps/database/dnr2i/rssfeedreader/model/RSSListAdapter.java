@@ -1,6 +1,7 @@
 package apps.database.dnr2i.rssfeedreader.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import apps.database.dnr2i.rssfeedreader.FeedSelectorActivity;
+import apps.database.dnr2i.rssfeedreader.ModifyFeedRssActivity;
 import apps.database.dnr2i.rssfeedreader.R;
 
 
@@ -83,6 +86,15 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
 
             }
         });
+        holder.getModifyButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ModifyFeedRssActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
 
     }
 

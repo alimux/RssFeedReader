@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:text="Modifier Flux Rss : "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblTitleModify"
+        android:textSize="22dp"
+        android:textColor="@color/colorAccent"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:text="@string/lblRssTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblRssTitle"
+        android:textSize="22dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text|textPersonName"
+        android:ems="10"
+        android:id="@+id/feedName" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:text="@string/lblRssDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblRssDescription"
+        android:textSize="22dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/feedDescription" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        />
+
+    <TextView
+        android:text="@string/lblRssurl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblurl"
+        android:textSize="22dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/feedUrl"
+        android:inputType="textUri" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        />
+
+    <Button
+        android:text="Modifier le flux..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/modifyFeedRSS"
+        android:textStyle="bold"
+        android:onClick="addRssFeed" />
+
+
+</LinearLayout>
