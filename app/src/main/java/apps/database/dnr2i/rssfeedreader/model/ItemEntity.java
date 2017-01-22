@@ -68,7 +68,7 @@ public class ItemEntity {
         db = dbOpener.getWritableDatabase();
 
         //execute query
-        Cursor cursor = db.query(TABLE_NAME, columns, where, null, null, null, order, null);
+        Cursor cursor = db.query(ITEM_TABLE_NAME, columns, where, null, null, null, order, null);
         return cursor;
 
 

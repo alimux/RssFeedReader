@@ -48,8 +48,11 @@ public class SelectedFeedActivity extends AppCompatActivity {
         feedItems = new ItemEntity(SelectedFeedActivity.this);
 
         //TODO recupérer l'id du feed sur lequel on a cliqué
-        //arrayFeedItems = feedItemList();
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id",0);
+        Log.i("AD",""+id);
+        arrayFeedItems = feedItemList(intent.getIntExtra("id",0));
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.itemsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RSSAdapter(arrayFeedItems));
     }
@@ -80,14 +83,14 @@ public class SelectedFeedActivity extends AppCompatActivity {
                 Log.i("AD", "link : "+cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
                 rssFI.setLink(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_LINK)));
                 rssFI.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DATE)));
-                rssFI.setFeedId(cursor.getInt(cursor.getColumnIndex(COLUMN_FEED_ID)));
+                //rssFI.setFeedId(cursor.getInt(cursor.getColumnIndex(COLUMN_FEED_ID)));
 
-                arrayFeedItems.add(rssFI);
+                feedItems.add(rssFI);
             }
             while (cursor.moveToNext());
         }
         cursor.close();
 
-        return arrayFeedItems;
+        return feedItems;
     }
 }
