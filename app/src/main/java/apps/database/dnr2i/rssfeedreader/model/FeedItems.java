@@ -51,7 +51,7 @@ public class FeedItems {
     }
 
     public void setDate(String dateFeed) {
-        this.date = date;
+        this.date = dateFeed;
     }
 
     public void setFeedId(int feedId) {

@@ -80,9 +80,9 @@ public class SelectedFeedActivity extends AppCompatActivity {
                 rssFI.setId(cursor.getInt(cursor.getColumnIndex(_ID)));
                 rssFI.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_TITLE)));
                 rssFI.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
-                Log.i("AD", "link : "+cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DESCRIPTION)));
-                rssFI.setLink(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_LINK)));
                 rssFI.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DATE)));
+                Log.i("AD", "date : "+cursor.getString(cursor.getColumnIndex(COLUMN_NAME_DATE)));
+                rssFI.setLink(cursor.getString(cursor.getColumnIndex(COLUMN_NAME_LINK)));
                 //rssFI.setFeedId(cursor.getInt(cursor.getColumnIndex(COLUMN_FEED_ID)));
 
                 feedItems.add(rssFI);
