@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import apps.database.dnr2i.rssfeedreader.FeedSelectorActivity;
+import static apps.database.dnr2i.rssfeedreader.FeedSelectorActivity.DEFAULT_ENTRIES;
+import  apps.database.dnr2i.rssfeedreader.FeedSelectorActivity;
 import apps.database.dnr2i.rssfeedreader.ModifyFeedRssActivity;
 import apps.database.dnr2i.rssfeedreader.R;
 import apps.database.dnr2i.rssfeedreader.SelectedFeedActivity;
@@ -31,14 +32,20 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
     private FeedListViewHolder holder;
 
 
-
+    /**
+     * construct the list of the available feed
+     * @param rssFL
+     * @param context
+     */
     public RSSListAdapter(ArrayList<RSSFeedList> rssFL, Context context){
         this.rssFL = rssFL;
         this.context = context;
-
-
-
     }
+
+    /**
+     * Display or not modify and delete button only if record is found
+     * @param holder
+     */
     public void displayButton(FeedListViewHolder holder){
         if(rssFL.size()==1 && rssFL.get(0).getId()==-1){
             holder.displaySelectorButton();
@@ -46,6 +53,12 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
 
     }
 
+    /**
+     * Recycle view, create layout
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public FeedListViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -55,6 +68,11 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
         return holder;
     }
 
+    /**
+     * adding elements on recycle view and manage clicks on interface
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(FeedListViewHolder holder, final int position) {
 
@@ -88,10 +106,19 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
                 if(rssEntity.deleteFeed(rssFeedList.getId())){
                     Toast toast = Toast.makeText(context, message+notError, Toast.LENGTH_SHORT);
                     toast.show();
-                    //refresh activity
+                    //delete record
                     rssFL.remove(position);
-                    notifyDataSetChanged();
-
+                    //notify recycler view
+                    notifyItemRemoved(position);
+                    //verifying size of ArrayList and if list=0 push default entry
+                    if(rssFL.size()==0){
+                        rssFeedList.setId(-1);
+                        rssFeedList.setTitleFeed("");
+                        rssFeedList.setUrlFeed("");
+                        rssFeedList.setDescriptionFeed(DEFAULT_ENTRIES);
+                        rssFL.add(rssFeedList);
+                        notifyItemInserted(position+1);
+                    }
 
                 }
                 else{
@@ -112,10 +139,12 @@ public class RSSListAdapter extends RecyclerView.Adapter<FeedListViewHolder> {
             }
         });
 
-
-
     }
 
+    /**
+     * method which count the # of item
+     * @return itemCount
+     */
     @Override
     public  int getItemCount(){
         int recordNumber =  rssFL.size();

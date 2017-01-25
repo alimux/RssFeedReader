@@ -13,6 +13,7 @@ import static apps.database.dnr2i.rssfeedreader.db.DBOpener.*;
 
 /**
  * Created by Alexandre DUCREUX on 18/01/2017.
+ * Class which manage the Rss Entity
  */
 
 public class RssEntity {
@@ -23,10 +24,12 @@ public class RssEntity {
     private long dateNow;
 
 
-
-
+    /**
+     * construct initialize database
+     * @param context
+     */
     public RssEntity(Context context){
-        //instanciate DBOpener
+
         dbOpener = new DBOpener(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -58,6 +61,11 @@ public class RssEntity {
 
     }
 
+    /**
+     * method which returns a selected feed
+     * @param id
+     * @return cursor
+     */
     public Cursor getFeedById(int id){
 
         //prepare query
@@ -68,6 +76,10 @@ public class RssEntity {
         return cursor;
     }
 
+    /**
+     * method which returns all feeds records which are in database
+     * @return cursor
+     */
     public Cursor getAllFeeds(){
         //prepare query
         String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
@@ -81,6 +93,14 @@ public class RssEntity {
 
     }
 
+    /**
+     * update selected feed in database
+     * @param id
+     * @param title
+     * @param description
+     * @param url
+     * @return db.update
+     */
     public int modifyFeed(int id, String title, String description, String url ){
         ContentValues values = new ContentValues();
         dateNow = System.currentTimeMillis();
@@ -98,7 +118,11 @@ public class RssEntity {
 
     }
 
-
+    /**
+     * delete the selected record
+     * @param i
+     * @return db.delete
+     */
     public boolean deleteFeed(int i){
         String where = " _ID = " + i + " ";
         //String whereArgs[] =  { Integer.toString(i) };

@@ -13,7 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 /**
  * Created by Alexandre DUCREUX on 21/01/2017.
- * Class consists of parsing xml feeds using DOM Method
+ * Class consists of parsing xml feeds using DOM Method with AsyncTask
  */
 
 public class ParserRSS extends AsyncTask<String, Void, Document> {
@@ -56,6 +56,10 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
         }
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     protected void onPostExecute(Document result){
         Log.e("AD", "Parsing terminé...");

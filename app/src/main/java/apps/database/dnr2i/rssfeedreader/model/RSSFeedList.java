@@ -1,6 +1,7 @@
 package apps.database.dnr2i.rssfeedreader.model;
 
 /**
+ * Class of RSS Feeds item of list
  * Created by alexandre DUCREUX on 21/01/2017.
  */
 

@@ -18,6 +18,10 @@ import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_DE
 import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_LINK;
 import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_TITLE;
 
+/**
+ * ACTIVITY -> modify the selected feed, previously selected in the FeedSelectorActivity
+ * @author Alexandre DUCREUX 2017
+ */
 public class ModifyFeedRssActivity extends AppCompatActivity {
 
     private RssEntity rssEntity;
@@ -31,6 +35,10 @@ public class ModifyFeedRssActivity extends AppCompatActivity {
     private final static String ERROR_FORM = "Veuillez remplir tous les champs du formulaire, svp...";
     private int id;
 
+    /**
+     * create Activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +70,11 @@ public class ModifyFeedRssActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * method which consists of modifying the selection, and update the record in database
+     * @call validate to check the form
+     * @param view
+     */
     public void modifyRssFeed(View view){
 
 
@@ -82,10 +95,17 @@ public class ModifyFeedRssActivity extends AppCompatActivity {
             }
             //Display message
             Toast.makeText(getApplicationContext(), errOrNot, Toast.LENGTH_LONG).show();
+            //@back on main Activity
+            Intent intent = new Intent(this, FeedSelectorActivity.class);
+            startActivity(intent);
         }
 
     }
 
+    /**
+     * Check form
+     * @return
+     */
     public boolean validate() {
 
         if (feedName.isEmpty() || feedDescription.isEmpty() || feedUrl.isEmpty()) {

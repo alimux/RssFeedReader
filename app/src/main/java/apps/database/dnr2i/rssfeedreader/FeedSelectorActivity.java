@@ -22,13 +22,19 @@ import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_DE
 import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_LINK;
 import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_NAME_TITLE;
 
-
+/**
+ * ACTIVITY -> Main, display the feeds subscriptions of the user
+ */
 public class FeedSelectorActivity extends AppCompatActivity {
 
     private RssEntity rssEntity;
-    private static final String DEFAULT_ENTRIES = "Vous n'êtes abonné à aucun flux...";
+    private RSSListAdapter adapter;
+    public static final String DEFAULT_ENTRIES = "Vous n'êtes abonné à aucun flux...";
 
-
+    /**
+     * create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +43,15 @@ public class FeedSelectorActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+    /**
+     * onResume activity, update the recycler view
+     */
     @Override
     protected void onResume() {
         super.onResume();
         Log.i("AD", "reprise de l'activité");
-        //RSSListAdapter.notifyDataSetChanged();
         initRecyclerView();
+        adapter.notifyDataSetChanged();
     }
 
     /**
@@ -124,14 +133,12 @@ public class FeedSelectorActivity extends AppCompatActivity {
     }
 
     public void initRecyclerView(){
+
         rssEntity = new RssEntity(FeedSelectorActivity.this);
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.feedsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RSSListAdapter(RssFeedsList(), FeedSelectorActivity.this));
-
-
+        adapter = new RSSListAdapter(RssFeedsList(), FeedSelectorActivity.this);
+        recyclerView.setAdapter(adapter);
     }
-
-
 
 }

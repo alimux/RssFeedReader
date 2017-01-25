@@ -13,7 +13,11 @@ public class Contract {
     // make the constructor private.
     private Contract() {}
 
-    /* Inner class that defines the table contents */
+    /**
+     *  Inner class that defines the tables contents
+     *  RssFeed which contains the list of the available rss feeds
+     *  Item which contains the feeds themselves
+     */
     public static class Entry implements BaseColumns {
         public static final String TABLE_NAME = "rssfeeds";
         public static final String ITEM_TABLE_NAME = "item";

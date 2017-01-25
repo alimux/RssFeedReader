@@ -15,7 +15,13 @@ import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.*;
 
 public class DBOpener extends SQLiteOpenHelper {
 
-    //static attributes
+    /**
+     * Static attributes of Database
+     * String DB_CREATE -> to initialize two tables(rssfeeds & item)
+     * String SQL_DELETE_ENTRIES -> to drop database
+     * String DATABASE_VERSION -> to settings version
+     * String DATABASE_NAME -> initialize database name
+     */
     private static final String DB_CREATE = "CREATE TABLE " + TABLE_NAME + "( " +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"  +
             COLUMN_NAME_TITLE + " TEXT NOT NULL , " +
@@ -28,15 +34,18 @@ public class DBOpener extends SQLiteOpenHelper {
             COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL , " +
             COLUMN_NAME_LINK + " TEXT NOT NULL , " +
             COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");";
-
-    //dropping base
     private static final String SQL_DELETE_ENTRIES = " DROP TABLE  IF EXISTS " + TABLE_NAME;
-
-    //versioning
     public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "rssfeed.db";
 
 
+    /**
+     * constructor
+     * @param context
+     * @param dbName
+     * @param factory
+     * @param version
+     */
     public DBOpener(Context context, String dbName, SQLiteDatabase.CursorFactory factory, int version){
         super(context, dbName, factory, version);
     }

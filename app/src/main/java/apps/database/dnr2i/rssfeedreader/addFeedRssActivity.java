@@ -26,6 +26,10 @@ public class addFeedRssActivity extends AppCompatActivity {
     private String feedUrl;
     private final static String ERROR_FORM = "Veuillez remplir tous les champs du formulaire, svp...";
 
+    /**
+     * create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +65,15 @@ public class addFeedRssActivity extends AppCompatActivity {
             CharSequence errOrNot = "";
             if (result == -1) {
                 errOrNot = "L'enregistrement à rencontré un problème...";
+
             } else {
                 errOrNot = "Le nouvel élément " + feedName + " est bien enregistré !";
+                //adding focus on title form and reset all fields
+                inputFeedName.setText("");
+                inputFeedName.requestFocus();
+                inputFeedUrl.setText("http://");
+                inputFeedUrl.setSelection(7);
+                inputFeedDescription.setText("");
 
             }
             //Display message
@@ -70,6 +81,11 @@ public class addFeedRssActivity extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * verifying form
+     * @return
+     */
     public boolean validate(){
 
         if(feedName.isEmpty() || feedDescription.isEmpty() || feedUrl.isEmpty()){
@@ -78,10 +94,8 @@ public class addFeedRssActivity extends AppCompatActivity {
             return false;
         }
         else {
-
             return true;
         }
-
-
     }
+
 }
