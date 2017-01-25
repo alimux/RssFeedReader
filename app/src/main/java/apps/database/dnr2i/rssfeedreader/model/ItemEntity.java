@@ -42,24 +42,6 @@ public class ItemEntity {
      * @return
      */
 
-    public Long addNewItem(String title, String description, String url, String date, int feedId){
-
-        SQLiteDatabase db = dbOpener.getWritableDatabase();
-        ContentValues values =  new ContentValues();
-
-        Log.i("AD", "valeurs addNewItem :" +title +" ,"+description+" ," + " url: " + url);
-        //put data in base
-        values.put(COLUMN_NAME_TITLE, title);
-        values.put(COLUMN_NAME_DESCRIPTION,description);
-        values.put(COLUMN_NAME_LINK, url);
-        values.put(COLUMN_NAME_DATE, date);
-        values.put(COLUMN_FEED_ID, feedId);
-
-        //insertion des datas
-        return db.insertOrThrow(ITEM_TABLE_NAME, null, values);
-
-    }
-
     public Cursor getAllItems(int feedId){
         //prepare query
         String[] columns = new String[] { _ID, COLUMN_NAME_TITLE, COLUMN_NAME_DESCRIPTION, COLUMN_NAME_LINK, COLUMN_NAME_DATE };
@@ -67,11 +49,33 @@ public class ItemEntity {
         String where = " feedId="+feedId+" ";
         db = dbOpener.getWritableDatabase();
 
-        //execute query
-        Cursor cursor = db.query(ITEM_TABLE_NAME, columns, where, null, null, null, order, null);
-        return cursor;
+        try {
+            //execute query
+            Cursor cursor = db.query(ITEM_TABLE_NAME, columns, where, null, null, null, order, null);
+            return cursor;
+        }catch (Exception ex){
+            Log.e("AD", "pas de resultat recupérés", ex);
+            return null;
+        }
 
 
     }
 
+    public Long setItem(String title, String description, String date, String link, int feedId){
+        ContentValues values = new ContentValues();
+        db = dbOpener.getWritableDatabase();
+        //emptyItemsById(feedId);
+        values.put(COLUMN_NAME_TITLE, title);
+        values.put(COLUMN_NAME_DESCRIPTION, description);
+        values.put(COLUMN_NAME_LINK,link);
+        values.put(COLUMN_NAME_DATE,date);
+        values.put(COLUMN_FEED_ID, feedId);
+        return db.insertOrThrow(ITEM_TABLE_NAME, null, values);
+    }
+
+    public boolean emptyItemsById(int feedId){
+        String where = " feedId = " +feedId+" ";
+        db = dbOpener.getWritableDatabase();
+        return db.delete(ITEM_TABLE_NAME,where,null)>0;
+    }
 }

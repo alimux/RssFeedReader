@@ -1,6 +1,6 @@
 package apps.database.dnr2i.rssfeedreader.model;
 
-import android.sax.Element;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.ArrayList;
 
@@ -19,12 +20,15 @@ import apps.database.dnr2i.rssfeedreader.R;
  * Created by Alexandre DUCREUX on 21/01/2017.
  */
 
-public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder>{
+public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder> implements DocumentConsumer{
 
     private ArrayList<FeedItems> rssFI = new ArrayList<>();
+    private Document _document;
+    private Context context;
 
-    public RSSAdapter(ArrayList<FeedItems> rssFI) {
+    public RSSAdapter(ArrayList<FeedItems> rssFI, Context context) {
         this.rssFI = rssFI;
+        this.context = context;
     }
 
     @Override
@@ -47,5 +51,25 @@ public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder>{
         holder.getDescription().setText(feedItemsList.getDescription());
         holder.getLink().setText(feedItemsList.getLink());
         holder.getDate().setText(feedItemsList.getDate());
+    }
+    @Override
+    public void setXMLDocument(Document document, int feedId) {
+        _document = document;
+        ItemEntity item = new ItemEntity(this.context);
+        if (document.getElementsByTagName("item").getLength() > 0)
+        {
+            //item.emptyItemsById(feedId);
+        }
+        for (int i=0; i<document.getElementsByTagName("item").getLength(); i++)
+        {
+            Element element = (Element) _document.getElementsByTagName("item").item(i);
+            String title = element.getElementsByTagName("title").item(0).getTextContent();
+            String description = element.getElementsByTagName("description").item(0).getTextContent();
+            String date = element.getElementsByTagName("pubDate").item(0).getTextContent();
+            String link = element.getElementsByTagName("link").item(0).getTextContent();
+            item.setItem(title,description,date,link,feedId);
+            Log.i("valeur de I"," i = " +title);
+        }
+        Log.i("FIN","FIN");
     }
 }

@@ -1,7 +1,5 @@
 package apps.database.dnr2i.rssfeedreader.model;
 
-import apps.database.dnr2i.rssfeedreader.SelectedFeedActivity;
-
 /**
  * Created by flolaptop on 21/01/2017.
  */
@@ -33,6 +31,8 @@ public class FeedItems {
     public String getDate() {
         return date;
     }
+
+    public int getFeedId(){ return this.feedId; }
 
     public void setTitle(String title) {
         this.title = title;

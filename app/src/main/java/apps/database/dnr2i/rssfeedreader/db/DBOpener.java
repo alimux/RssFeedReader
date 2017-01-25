@@ -27,16 +27,17 @@ public class DBOpener extends SQLiteOpenHelper {
             COLUMN_NAME_TITLE + " TEXT NOT NULL , " +
             COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL , " +
             COLUMN_NAME_LINK + " TEXT NOT NULL , " +
-            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");" +
-            "CREATE TABLE " + ITEM_TABLE_NAME + "( " +
+            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");";
+    private static final String itemTableCreate =" CREATE TABLE " + ITEM_TABLE_NAME + "( " +
             _ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"  +
             COLUMN_NAME_TITLE + " TEXT NOT NULL , " +
             COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL , " +
             COLUMN_NAME_LINK + " TEXT NOT NULL , " +
-            COLUMN_NAME_DATE + " DATETIME NOT NULL " + ");";
-    private static final String SQL_DELETE_ENTRIES = " DROP TABLE  IF EXISTS " + TABLE_NAME;
-    public static final int DATABASE_VERSION = 4;
-    public static final String DATABASE_NAME = "rssfeed.db";
+            COLUMN_NAME_DATE + " TEXT NOT NULL , " +
+            COLUMN_FEED_ID +" TEXT NOT NULL );";
+    private static final String SQL_DELETE_ENTRIES = " DROP TABLE  IF EXISTS " + TABLE_NAME+" ; DROP TABLE  IF EXISTS "+ITEM_TABLE_NAME;
+    public static final int DATABASE_VERSION = 7;
+    public static final String DATABASE_NAME = "rssfeedfinal.db";
 
 
     /**
@@ -57,6 +58,7 @@ public class DBOpener extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         Log.i("AD", "Création des tables la base de données"+DB_CREATE);
         db.execSQL(DB_CREATE);
+        db.execSQL(itemTableCreate);
     }
 
     /**

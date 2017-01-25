@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import static apps.database.dnr2i.rssfeedreader.FeedSelectorActivity.DEFAULT_ENTRIES;
-import  apps.database.dnr2i.rssfeedreader.FeedSelectorActivity;
+
 import apps.database.dnr2i.rssfeedreader.ModifyFeedRssActivity;
 import apps.database.dnr2i.rssfeedreader.R;
 import apps.database.dnr2i.rssfeedreader.SelectedFeedActivity;

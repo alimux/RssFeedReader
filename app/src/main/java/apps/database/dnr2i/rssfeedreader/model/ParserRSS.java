@@ -19,10 +19,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class ParserRSS extends AsyncTask<String, Void, Document> {
 
 
-    private DocumentConsumer consumer;
+    private DocumentConsumer _consumer;
+    private int feedId;
 
     public ParserRSS(DocumentConsumer consumer){
-        consumer = consumer;
+        _consumer = consumer;
     }
 
     /**
@@ -34,8 +35,11 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
     protected Document doInBackground(String... params) {
         //launch new thread
         try{
+            Log.i("FEEDURL",""+params[0]);
             //Feed RSS URL
             URL url = new URL(params[0]);
+            feedId = Integer.parseInt(params[1]);
+            Log.i("ID",""+feedId);
             //launching connection
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             // get information into an InputStream
@@ -43,6 +47,7 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
 
             try {
                 //parsing
+                Log.i("STREAM",""+stream);
                 return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(stream);
             }
             finally {
@@ -63,7 +68,7 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
     @Override
     protected void onPostExecute(Document result){
         Log.e("AD", "Parsing terminé...");
-        consumer.setXMLDocument(result);
+        _consumer.setXMLDocument(result,feedId);
     }
 
 

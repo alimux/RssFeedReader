@@ -8,5 +8,5 @@ import org.w3c.dom.Document;
 
 public interface DocumentConsumer {
 
-    void setXMLDocument(Document document);
+    void setXMLDocument(Document document, int feedId);
 }
