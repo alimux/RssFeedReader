@@ -1,7 +1,9 @@
 package apps.database.dnr2i.rssfeedreader.model;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 
@@ -40,6 +42,7 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
             URL url = new URL(params[0]);
             feedId = Integer.parseInt(params[1]);
             Log.i("ID",""+feedId);
+
             //launching connection
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             // get information into an InputStream

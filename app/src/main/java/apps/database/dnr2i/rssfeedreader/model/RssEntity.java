@@ -128,8 +128,16 @@ public class RssEntity {
         //String whereArgs[] =  { Integer.toString(i) };
         //Log.i("AD", "whereArgs : "+whereArgs[0]);
         db = dbOpener.getWritableDatabase();
+        //delete alls feeds attached to the original feed
+        deleteItemsFeed(i);
         //delete reccord
         return db.delete(TABLE_NAME, where, null) > 0;
+    }
+    public  boolean deleteItemsFeed(int feedID){
+        String where = " feedId = " + feedID + " ";
+        db = dbOpener.getWritableDatabase();
+        //delete reccord
+        return db.delete(ITEM_TABLE_NAME, where, null) > 0;
     }
 
 }

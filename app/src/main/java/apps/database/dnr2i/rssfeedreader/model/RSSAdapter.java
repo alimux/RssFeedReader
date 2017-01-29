@@ -51,6 +51,8 @@ public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder> implemen
         holder.getDescription().setText(feedItemsList.getDescription());
         holder.getLink().setText(feedItemsList.getLink());
         holder.getDate().setText(feedItemsList.getDate());
+
+
     }
     @Override
     public void setXMLDocument(Document document, int feedId) {
@@ -68,8 +70,11 @@ public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder> implemen
             String date = element.getElementsByTagName("pubDate").item(0).getTextContent();
             String link = element.getElementsByTagName("link").item(0).getTextContent();
             item.setItem(title,description,date,link,feedId);
-            Log.i("valeur de I"," i = " +title);
+            Log.i("valeur de title"," title = " +title);
+
         }
+
+        notifyDataSetChanged();
         Log.i("FIN","FIN");
     }
 }
