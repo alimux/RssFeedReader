@@ -23,6 +23,7 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
 
     private DocumentConsumer _consumer;
     private int feedId;
+    public AsyncResponse delegate = null;
 
     public ParserRSS(DocumentConsumer consumer){
         _consumer = consumer;
@@ -72,6 +73,7 @@ public class ParserRSS extends AsyncTask<String, Void, Document> {
     protected void onPostExecute(Document result){
         Log.e("AD", "Parsing terminé...");
         _consumer.setXMLDocument(result,feedId);
+        delegate.processFinish();
     }
 
 

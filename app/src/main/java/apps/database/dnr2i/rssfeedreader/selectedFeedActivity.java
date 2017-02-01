@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
+import apps.database.dnr2i.rssfeedreader.model.AsyncResponse;
 import apps.database.dnr2i.rssfeedreader.model.FeedItems;
 import apps.database.dnr2i.rssfeedreader.model.ItemEntity;
 import apps.database.dnr2i.rssfeedreader.model.ParserRSS;
@@ -38,7 +39,7 @@ import static apps.database.dnr2i.rssfeedreader.db.Contract.Entry.COLUMN_FEED_ID
  * Created by flolaptop on 21/01/2017.
  */
 
-public class SelectedFeedActivity extends AppCompatActivity {
+public class SelectedFeedActivity extends AppCompatActivity implements AsyncResponse {
     private int feedId;
     private ItemEntity feedItems;
     private ArrayList<FeedItems> arrayFeedItems;
@@ -126,6 +127,21 @@ public class SelectedFeedActivity extends AppCompatActivity {
         RssEntity rssEntity = new RssEntity(SelectedFeedActivity.this);
         Cursor feed = rssEntity.getFeedById(feedId);
         feed.moveToFirst();
-        task.execute(feed.getString(feed.getColumnIndex(COLUMN_NAME_LINK)), String.valueOf(feedId));
+        task.delegate = this;
+        try{
+            task.execute(feed.getString(feed.getColumnIndex(COLUMN_NAME_LINK)), String.valueOf(feedId));
+        }catch(Exception e){
+
+        }
+//        feedItemList(feedId);
+    }
+
+    @Override
+    public void processFinish(){
+        feedItemList(this.feedId);
+        Log.i("AD","VIEW A JOUR");
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }
