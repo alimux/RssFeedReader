@@ -60,7 +60,7 @@ public class RSSAdapter extends RecyclerView.Adapter<ArticleViewHolder> implemen
         ItemEntity item = new ItemEntity(this.context);
         if (document.getElementsByTagName("item").getLength() > 0)
         {
-            //item.emptyItemsById(feedId);
+            item.emptyItemsById(feedId);
         }
         for (int i=0; i<document.getElementsByTagName("item").getLength(); i++)
         {
